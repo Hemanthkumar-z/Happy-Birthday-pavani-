@@ -6,7 +6,7 @@ const questions = [
     "Have you ever started a match confidently and died in the first minute?",
     "Are you secretly the biggest noob in the guild? 🤣",
     "Have you ever said 'rush' and then stayed behind?",
-    "Will you distribute diamonds to all guild members today?",
+    "Have you ever stolen a teammate's kills?",
     "Have you ever stolen a teammate's loot?",
     "Have you ever used a teammate as bait?"
 ];
