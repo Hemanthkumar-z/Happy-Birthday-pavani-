@@ -1,0 +1,367 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body{
+    background:linear-gradient(135deg,#160824,#361040,#160824);
+    color:#fff;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    transition:background 2s ease;
+}
+
+body.magical-bg{
+    background:linear-gradient(135deg,#4b1d52,#9d4edd,#ff79c6);
+}
+
+/* Screens */
+
+#question-screen,
+#lotus-screen,
+#final-screen{
+    position:absolute;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    opacity:0;
+    transition:opacity 1s ease;
+}
+
+#question-screen.active,
+#lotus-screen.active,
+#final-screen.active{
+    display:flex;
+    opacity:1;
+}
+
+/* Glass Card */
+
+.glass-card{
+    width:90%;
+    max-width:420px;
+    padding:2rem;
+    text-align:center;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:24px;
+
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+}
+
+/* Question */
+
+.question-text{
+    font-size:1.25rem;
+    font-weight:600;
+    line-height:1.5;
+    min-height:90px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:1rem;
+}
+
+.funny-message{
+    color:#ff79c6;
+    font-weight:600;
+    min-height:25px;
+    margin-bottom:1rem;
+}
+
+/* Buttons */
+
+.btn-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    min-height:90px;
+}
+
+.btn{
+    border:none;
+    border-radius:12px;
+    padding:12px 26px;
+
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+
+    transition:all .25s ease;
+}
+
+.btn-yes{
+    background:linear-gradient(45deg,#FFD700,#FF8C00);
+    color:#1a0b2e;
+}
+
+.btn-no{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:white;
+}
+
+.btn:active{
+    transform:scale(.95);
+}
+
+/* Shake Animation */
+
+@keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-8px);}
+    50%{transform:translateX(8px);}
+    75%{transform:translateX(-8px);}
+}
+
+.shake{
+    animation:shake .4s ease;
+}
+
+/* Checkmark */
+
+.check-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:5rem;
+    background:rgba(0,0,0,.8);
+
+    border-radius:24px;
+
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+}
+
+.check-overlay.active{
+    opacity:1;
+}
+
+.check-overlay.active span{
+    animation:pop .5s ease forwards;
+}
+
+@keyframes pop{
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    50%{
+        transform:scale(1.5);
+        opacity:1;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* Lotus */
+
+.lotus-container{
+    width:260px;
+    height:260px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+
+.lotus-instruction{
+    margin-top:20px;
+    font-size:1.4rem;
+    font-weight:600;
+    color:#FFD700;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:.7;
+        transform:scale(1);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.05);
+    }
+}
+
+/* Petals */
+
+.petal-wrapper{
+    position:absolute;
+    bottom:20px;
+    transition:1s ease;
+    transform-origin:bottom center;
+}
+
+.petal{
+    width:60px;
+    height:120px;
+
+    background:linear-gradient(to top,#ff79c6,#f1fa8c);
+
+    border-radius:50% 50% 0 50%;
+    transform:rotate(45deg);
+
+    box-shadow:0 0 15px rgba(255,121,198,.5);
+}
+
+.pw-1{transform:rotate(0deg) scale(.6);}
+.pw-2{transform:rotate(-5deg) scale(.5);}
+.pw-3{transform:rotate(5deg) scale(.5);}
+.pw-4{transform:rotate(-10deg) scale(.4);}
+.pw-5{transform:rotate(10deg) scale(.4);}
+.pw-6{transform:rotate(-15deg) scale(.3);}
+.pw-7{transform:rotate(15deg) scale(.3);}
+
+/* Final Screen */
+
+.final-title{
+    font-size:2.2rem;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:1rem;
+
+    background:linear-gradient(
+        45deg,
+        #FFD700,
+        #ff79c6,
+        #8be9fd
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.final-subtitle{
+    line-height:1.7;
+    font-size:1.05rem;
+}
+
+/* Floating Petals */
+
+.floating-petal{
+    position:absolute;
+
+    width:20px;
+    height:30px;
+
+    background:#ff79c6;
+    border-radius:50% 50% 0 50%;
+
+    opacity:.6;
+
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-10vh) rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:.6;
+    }
+
+    90%{
+        opacity:.6;
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Sparkles */
+
+.sparkle{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:white;
+    border-radius:50%;
+
+    animation:sparkleAnim 1s ease forwards;
+}
+
+@keyframes sparkleAnim{
+    from{
+        opacity:1;
+        transform:scale(0);
+    }
+
+    to{
+        opacity:0;
+        transform:scale(2) translateY(-20px);
+    }
+}
+
+/* Music Button */
+
+#music-toggle{
+    position:fixed;
+    top:20px;
+    right:20px;
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+
+    backdrop-filter:blur(10px);
+
+    z-index:999;
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+    .question-text{
+        font-size:1.1rem;
+    }
+
+    .final-title{
+        font-size:1.8rem;
+    }
+
+    .lotus-container{
+        width:220px;
+        height:220px;
+    }
+}
